@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Denux\IdentityServerBundle\Security\IdentityServerTokenVerifier:
+        arguments:
+            $issuer: '%identity_server.issuer%'
+            $audience: '%identity_server.audience%'
+            $jwksUri: '%identity_server.jwks_uri%'
+            $jwksCacheTtl: '%identity_server.jwks_cache_ttl%'
+            $clockSkew: '%identity_server.clock_skew%'
+            $cache: '@cache.app'
+
+    Denux\IdentityServerBundle\Client\ClientCredentialsTokenProvider:
+        arguments:
+            $cache: '@cache.app'
